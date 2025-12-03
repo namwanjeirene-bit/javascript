@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TM SHOP PRICE ESTIMATER</title>
+    <style>
+        body {
+            font-family: Times New Romans, sans-serif;
+            background: blue;
+            padding: 25px;
+        }
+        .container {
+            width: 300px;
+            margin: 25px; 30px;
+            background: orange;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: square;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: black;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e7f5e7;
+            border-left: 4px solid ;
+            border-radius: 5px;
+            font-size: 18px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>TM SHOP Cost Calculator</h2><label for="bread">Quantity of Bread (3,000 UGX each):</label>
+    <input type="number" id="bread" placeholder="Enter quantity" />
+
+    <label for="milk">Quantity of Milk (2,500 UGX each):</label>
+    <input type="number" id="milk" placeholder="Enter quantity" />
+
+    <label for="eggs">Quantity of Eggs (500 UGX each):</label>
+    <input type="number" id="eggs" placeholder="Enter quantity" />
+
+    <button onclick="calculateTotal()">Calculate Total</button>
+
+    <div id="output"></div>
+</div>
+
+<script>
+    function Sum up total() {
+        let breadQty = document.getElementById("bread").value;
+        let milkQty = document.getElementById("milk").value;
+        let eggsQty = document.getElementById("eggs").value;
+
+        if (breadQty === "" || milkQty === "" || eggsQty === "") {
+            displayMessage("Error: All fields must be filled.", true);
+            return;
+        }
+
+        
+        if (breadQty < 0 || milkQty < 0 || eggsQty < 0) {
+            displayMessage("Error: Quantities cannot be negative.", true);
+            return;
+        }
+
+        if (isNaN(breadQty) || isNaN(milkQty) || isNaN(eggsQty)) {
+            displayMessage("Error: Invalid input detected.", true);
+            return;
+        }
+
+        const breadCost = breadQty * 3000;
+        const milkCost = milkQty * 2500;
+        const eggsCost = eggsQty * 500;
+
+        const total = breadCost + milkCost + eggsCost;
+
+        displayMessage(`Total Amount Payable: ${total.toLocaleString()} UGX`, false);
+    }
+
+    function displayMessage(msg, isError) {
+        let output = document.getElementById("output");
+        output.style.display = "block";
+        output.style.background = isError ? "#f8d7da" : "#e7f5e7";
+        output.style.borderLeft = isError ? "4px solid #dc3545" : "4px solid #4caf50";
+        output.textContent = msg;
+    }
+</script>
+
+</body>
+</html>
